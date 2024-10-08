@@ -1,51 +1,94 @@
-import { Button } from "@/components/ui/button"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCubes, faFaucet, faEnvelope } from '@fortawesome/free-solid-svg-icons'
-import { faDiscord, faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons'
+<!-- Font Awesome Kütüphanesi -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM1xHxX/jbKbi0zY7aUq6CZK5a4zKOWpL4WiFNT" crossorigin="anonymous" />
 
-const links = [
-  { icon: faCubes, text: "Rollapp", href: 'https://playground.dymension.xyz/rollapps/oxhub_1143-1/dashboard' },
-  { icon: faFaucet, text: "Faucet", href: 'https://faucet-0xhub.vercel.app/' },
-  { icon: faDiscord, text: "Discord", href: 'https://discord.gg/anxCrRfxPS' },
-  { icon: faTwitter, text: "Twitter", href: 'https://x.com/mutu0x' },
-  { icon: faEnvelope, text: "Mail", href: 'mailto:Contact@0xhub.xyz' },
-  { icon: faGithub, text: "GitHub", href: 'https://github.com/Mutu-s' },
-];
+<style>
+    body {
+        background-image: url('https://example.com/background-image.jpg'); /* Arka plan resmi buraya eklenir */
+        background-size: cover; /* Resmi kapsama ayarı */
+        background-position: center; /* Resmin konumu */
+        color: #fff; /* Yazı rengini beyaz yap */
+        font-family: 'Fraunces', sans-serif;
+    }
 
-export default function Component() {
-  return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-600 via-pink-500 to-red-500 text-white p-4">
-      <div className="bg-white bg-opacity-10 p-8 rounded-lg shadow-lg backdrop-blur-md w-full max-w-4xl">
-        <h1 className="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-pink-600 mb-8 text-center font-fraunces tracking-tight">
-          0xHub
-        </h1>
-        
-        <div className="flex flex-wrap justify-center items-center gap-6">
-          {links.map((item, index) => (
-            <React.Fragment key={item.text}>
-              <Button
-                variant="ghost"
-                className="text-lg font-medium text-white hover:text-yellow-300 transition-all duration-300 font-fraunces flex flex-col items-center gap-2 p-4 hover:bg-white hover:bg-opacity-10 rounded-lg group"
-                onClick={() => window.location.href = item.href}
-              >
-                <FontAwesomeIcon icon={item.icon} className="text-3xl mb-2 group-hover:scale-110 transition-transform duration-300" />
-                <span className="font-bold tracking-wide">{item.text}</span>
-              </Button>
-              {index < links.length - 1 && <span className="text-pink-300 text-2xl">⟡</span>}
-            </React.Fragment>
-          ))}
-        </div>
-      </div>
-      
-      <div className="mt-8 w-full max-w-4xl bg-white bg-opacity-10 p-4 rounded-lg shadow-lg backdrop-blur-md">
-        <iframe
-          src="https://embed.ipfscdn.io/ipfs/bafybeigdie2yyiazou7grjowoevmuip6akk33nqb55vrpezqdwfssrxyfy/erc1155.html?contract=0x2f1CB892ff4a93166974d6e1b98dB6af880A8AA0&chain=%7B%22name%22%3A%22oXHUBB%22%2C%22chain%22%3A%22%22%2C%22rpc%22%3A%5B%22https%3A%2F%2Fevm.tame-octopus-55.telebit.io%22%5D%2C%22nativeCurrency%22%3A%7B%22symbol%22%3A%22MTU%22%2C%22name%22%3A%22MTU%22%2C%22decimals%22%3A18%7D%2C%22shortName%22%3A%22oxhubb%22%2C%22chainId%22%3A1143%2C%22testnet%22%3Afalse%2C%22slug%22%3A%22oxhubb%22%7D&clientId=c907fb0bfa29eb679577319491da1720&tokenId=0&theme=dark&primaryColor=purple"
-          width="100%"
-          height="750px"
-          style={{ maxWidth: "100%" }}
-          frameBorder="0"
-        />
-      </div>
-    </div>
-  )
-}
+    .button-container {
+        background: rgba(255, 255, 255, 0.1); /* Arka plan hafif beyaz */
+        padding: 20px;
+        border-radius: 10px; /* Kenarları yuvarlama */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Gölge efekti */
+        max-width: 800px; /* Maksimum genişlik ayarı */
+        margin: auto; /* Ortalamak için margin ayarı */
+        text-align: center; /* Metni ortala */
+    }
+
+    button {
+        background: none;
+        border: none;
+        padding: 0;
+        font-size: 24px;
+        font-weight: bold;
+        cursor: pointer;
+        color: #001f3f;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: color 0.3s; /* Hover efekti için geçiş */
+    }
+
+    button:hover {
+        color: #ffcc00; /* Hover rengi */
+    }
+
+    .separator {
+        margin: 0 10px;
+    }
+
+    .heading {
+        font-size: 40px;
+        font-weight: bold;
+        color: #001f3f;
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="button-container">
+    <div class="heading">0xHub</div>
+    
+    <button onclick="window.location.href='https://playground.dymension.xyz/rollapps/oxhub_1143-1/dashboard'">
+        <i class="fas fa-cubes"></i> Rollapp
+    </button>
+    <span class="separator">⟡</span>
+    
+    <button onclick="window.location.href='https://faucet-0xhub.vercel.app/'">
+        <i class="fas fa-faucet"></i> Faucet
+    </button>
+    <span class="separator">⟡</span>
+    
+    <button onclick="window.location.href='https://discord.gg/anxCrRfxPS'">
+        <i class="fab fa-discord"></i> Discord
+    </button>
+    <span class="separator">⟡</span>
+    
+    <button onclick="window.location.href='https://x.com/mutu0x'">
+        <i class="fab fa-twitter"></i> Twitter
+    </button>
+    <span class="separator">⟡</span>
+    
+    <button onclick="window.location.href='mailto:Contact@0xhub.xyz'">
+        <i class="fas fa-envelope"></i> Mail
+    </button>
+    <span class="separator">⟡</span>
+    
+    <button onclick="window.location.href='https://github.com/Mutu-s'">
+        <i class="fab fa-github"></i> GitHub
+    </button>
+</div>
+
+<div style="display: flex; justify-content: center; margin-top: 20px;">
+    <iframe
+        src="https://embed.ipfscdn.io/ipfs/bafybeigdie2yyiazou7grjowoevmuip6akk33nqb55vrpezqdwfssrxyfy/erc1155.html?contract=0x2f1CB892ff4a93166974d6e1b98dB6af880A8AA0&chain=%7B%22name%22%3A%22oXHUBB%22%2C%22chain%22%3A%22%22%2C%22rpc%22%3A%5B%22https%3A%2F%2Fevm.tame-octopus-55.telebit.io%22%5D%2C%22nativeCurrency%22%3A%7B%22symbol%22%3A%22MTU%22%2C%22name%22%3A%22MTU%22%2C%22decimals%22%3A18%7D%2C%22shortName%22%3A%22oxhubb%22%2C%22chainId%22%3A1143%2C%22testnet%22%3Afalse%2C%22slug%22%3A%22oxhubb%22%7D&clientId=c907fb0bfa29eb679577319491da1720&tokenId=0&theme=dark&primaryColor=purple"
+        width="100%"
+        height="750px"
+        style="max-width:100%;"
+        frameborder="0">
+    </iframe>
+</div>
