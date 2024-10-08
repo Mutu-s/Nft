@@ -1,93 +1,174 @@
-<!-- Font Awesome Kütüphanesi -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM1xHxX/jbKbi0zY7aUq6CZK5a4zKOWpL4WiFNT" crossorigin="anonymous" />
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0xHub</title>
+    <style>
+        /* Genel Sayfa Stili */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Fraunces', sans-serif;
+            background: linear-gradient(135deg, #f2709c, #ff9472);
+        }
 
-<style>
-    body {
-        background-image: url('https://example.com/background-image.jpg'); /* Arka plan resmi buraya eklenir */
-        background-size: cover; /* Resmi kapsama ayarı */
-        background-position: center; /* Resmin konumu */
-        color: #fff; /* Yazı rengini beyaz yap */
-        font-family: 'Fraunces', sans-serif;
-    }
+        /* Üstteki Düğmeler ve Başlık */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
 
-    .button-container {
-        background: rgba(255, 255, 255, 0.1); /* Arka plan hafif beyaz */
-        padding: 20px;
-        border-radius: 10px; /* Kenarları yuvarlama */
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Gölge efekti */
-        max-width: 800px; /* Maksimum genişlik ayarı */
-        margin: auto; /* Ortalamak için margin ayarı */
-        text-align: center; /* Metni ortala */
-    }
+        .heading {
+            font-size: 40px;
+            font-weight: bold;
+            color: #001f3f;
+            margin-right: 10px;
+        }
 
-    button {
-        background: none;
-        border: none;
-        padding: 0;
-        font-size: 24px;
-        font-weight: bold;
-        cursor: pointer;
-        color: #001f3f;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        transition: color 0.3s; /* Hover efekti için geçiş */
-    }
+        button {
+            background: none;
+            border: none;
+            padding: 0;
+            font-family: 'Fraunces', sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #001f3f;
+        }
 
-    button:hover {
-        color: #ffcc00; /* Hover rengi */
-    }
+        button:hover {
+            color: #ff6347;
+            text-decoration: underline;
+        }
 
-    .separator {
-        margin: 0 10px;
-    }
+        .separator {
+            margin: 0 10px;
+            color: #001f3f;
+            font-size: 24px;
+        }
 
-    .heading {
-        font-size: 40px;
-        font-weight: bold;
-        color: #001f3f;
-        margin-bottom: 10px;
-    }
-</style>
+        /* Faucet Kutusu */
+        .faucet-container {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+            color: #333;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            margin-top: 20px;
+        }
 
-<div class="button-container">
-    <div class="heading">0xHub</div>
-    
-    <button onclick="window.location.href='https://playground.dymension.xyz/rollapps/oxhub_1143-1/dashboard'">
-        <i class="fas fa-cubes"></i> Rollapp
-    </button>
-    <span class="separator">⟡</span>
-    
-    <button onclick="window.location.href='https://faucet-0xhub.vercel.app/'">
-        <i class="fas fa-faucet"></i> Faucet
-    </button>
-    <span class="separator">⟡</span>
-    
-    <button onclick="window.location.href='https://discord.gg/anxCrRfxPS'">
-        <i class="fab fa-discord"></i> Discord
-    </button>
-    <span class="separator">⟡</span>
-    
-    <button onclick="window.location.href='https://x.com/mutu0x'">
-        <i class="fab fa-twitter"></i> Twitter
-    </button>
-    <span class="separator">⟡</span>
-    
-    <button onclick="window.location.href='mailto:Contact@0xhub.xyz'">
-        <i class="fas fa-envelope"></i> Mail
-    </button>
-    <span class="separator">⟡</span>
-    
-    <button onclick="window.location.href='https://github.com/Mutu-s'">
-        <i class="fab fa-github"></i> GitHub
-    </button>
-</div>
+        .faucet-container h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #000;
+        }
 
-<div style="display: flex; justify-content: center; margin-top: 20px;">
-    <iframe
-    src="https://embed.ipfscdn.io/ipfs/bafybeigdie2yyiazou7grjowoevmuip6akk33nqb55vrpezqdwfssrxyfy/erc1155.html?contract=0x598A64235F7BB8482baF829ffA56fAE355fb9A17&chain=%7B%22name%22%3A%220xHub%22%2C%22chain%22%3A%22%22%2C%22rpc%22%3A%5B%22https%3A%2F%2F0xhub-dym-evm.crabdance.com%22%5D%2C%22nativeCurrency%22%3A%7B%22symbol%22%3A%22MTU%22%2C%22name%22%3A%22MTU%22%2C%22decimals%22%3A18%7D%2C%22shortName%22%3A%22oxhubb%22%2C%22chainId%22%3A1143%2C%22testnet%22%3Afalse%2C%22slug%22%3A%22oxhubb%22%2C%22icon%22%3A%7B%22url%22%3A%22%22%2C%22width%22%3A50%2C%22height%22%3A50%2C%22format%22%3A%22%22%7D%7D&clientId=c907fb0bfa29eb679577319491da1720&tokenId=0&theme=dark&primaryColor=purple"
-    width="100%"
-    height="750px"
-    style="max-width:100%;"
-    frameborder="0"
-></iframe>
+        .faucet-container p {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .faucet-container input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .faucet-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #8e44ad;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .faucet-container button:hover {
+            background-color: #732d91;
+        }
+
+        .top-links {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .top-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .top-links a:hover {
+            color: #000;
+        }
+
+        /* Iframe */
+        .iframe-container {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 100%;
+            text-align: center;
+        }
+
+        iframe {
+            width: 100%;
+            max-width: 800px;
+            height: 750px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Düğmeler ve Başlık -->
+    <div class="button-container">
+        <div class="heading">0xHub</div>
+        <button onclick="window.location.href='https://playground.dymension.xyz/rollapps/oxhub_1143-1/dashboard'">Rollapp</button>
+        <span class="separator">⟡</span>
+        <button onclick="window.location.href='https://0xhub-facuet.vercel.app/'">Faucet</button>
+    </div>
+
+    <!-- Faucet Formu -->
+    <div class="faucet-container">
+        <div class="top-links">
+            <a href="#">🌐 EN</a>
+            <a href="#">🔗 Rollapp</a>
+        </div>
+        <h1>OxHub Faucet</h1>
+        <p>Test ağı için ücretsiz MTU tokeni alın</p>
+        <input type="text" placeholder="Cüzdan Adresi" />
+        <button>MTU Token Talep Et</button>
+    </div>
+
+    <!-- Iframe -->
+    <div class="iframe-container">
+        <iframe
+            src="https://embed.ipfscdn.io/ipfs/bafybeigdie2yyiazou7grjowoevmuip6akk33nqb55vrpezqdwfssrxyfy/erc1155.html?contract=0x598A64235F7BB8482baF829ffA56fAE355fb9A17&chain=%7B%22name%22%3A%220xHub%22%2C%22chain%22%3A%22%22%2C%22rpc%22%3A%5B%22https%3A%2F%2F0xhub-dym-evm.crabdance.com%22%5D%2C%22nativeCurrency%22%3A%7B%22symbol%22%3A%22MTU%22%2C%22name%22%3A%22MTU%22%2C%22decimals%22%3A18%7D%2C%22shortName%22%3A%22oxhubb%22%2C%22chainId%22%3A1143%2C%22testnet%22%3Afalse%2C%22slug%22%3A%22oxhubb%22%2C%22icon%22%3A%7B%22url%22%3A%22%22%2C%22width%22%3A50%2C%22height%22%3A50%2C%22format%22%3A%22%22%7D%7D&clientId=c907fb0bfa29eb679577319491da1720&tokenId=0&theme=dark&primaryColor=purple"
+            width="100%"
+            height="750px"
+            style="max-width:100%;"
+            frameborder="0"
+        ></iframe>
+    </div>
+</body>
+</html>
