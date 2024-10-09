@@ -166,63 +166,31 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
 
-        .contact-form {
+        .contact-section {
             margin-top: 20px;
+            text-align: center;
             background-color: rgba(255, 255, 255, 0.1);
             padding: 15px;
             border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
 
-        .contact-form input,
-        .contact-form textarea {
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
-            resize: none;
-            transition: box-shadow 0.3s;
+        .contact-section h2 {
+            margin-bottom: 10px;
         }
 
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            box-shadow: 0 0 5px #6a0dad;
-            outline: none;
-        }
-
-        .contact-form button {
-            background-color: #4b0082;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s, transform 0.2s;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .contact-form button:hover {
-            background-color: #6a0dad;
-            transform: scale(1.05);
-        }
-
-        .footer-links {
+        .contact-links {
             margin-top: 10px;
-            text-align: center;
-            color: #ddd;
         }
 
-        .footer-links a {
+        .contact-links a {
             color: #6a0dad;
             text-decoration: none;
             margin: 0 10px;
             transition: color 0.3s;
         }
 
-        .footer-links a:hover {
+        .contact-links a:hover {
             color: white;
         }
     </style>
@@ -267,16 +235,13 @@
             <h2>About NFTs</h2>
             <p>NFT'ler (Non-Fungible Tokens), benzersiz dijital varlıklardır. Sanat, oyun içi öğeler veya müzik gibi çeşitli alanlarda kullanılabilirler. Projemiz, kullanıcıların NFT'lerini mintlemesine ve ticaret yapmasına olanak tanır.</p>
         </div>
-        <div class="contact-form">
+        <div class="contact-section">
             <h2>Contact Us</h2>
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea rows="4" placeholder="Your Message" required></textarea>
-            <button type="submit">Send Message</button>
-        </div>
-        <div class="footer-links">
-            <a href="mailto:contact@0xhub.xyz">Email Us</a>
-            <a href="https://github.com/0xHub" target="_blank">GitHub</a>
+            <div class="contact-links">
+                <a href="mailto:contact@0xhub.xyz">Email Us</a>
+                <span>|</span>
+                <a href="https://github.com/0xHub" target="_blank">GitHub</a>
+            </div>
         </div>
         <footer>
             <p>&copy; 2024 0xHub. All rights reserved.</p>
