@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             min-height: 100vh;
@@ -19,16 +19,17 @@
         }
         .container {
             background-color: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 10px;
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
             padding: 20px;
             width: 90%;
             max-width: 800px;
             color: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             transition: transform 0.3s, opacity 0.3s;
         }
         .container:hover {
-            transform: scale(1.02);
+            transform: scale(1.03);
             opacity: 0.9;
         }
         .header {
@@ -38,13 +39,14 @@
             margin-bottom: 20px;
         }
         .logo {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             margin-right: 10px;
         }
         h1 {
-            font-size: 24px;
+            font-size: 28px;
             margin: 0;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
         }
         .iframe-container {
             position: relative;
@@ -58,6 +60,8 @@
             width: 100%;
             height: 100%;
             border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
         .buttons {
             display: flex;
@@ -69,10 +73,12 @@
             background-color: #4b0082;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
             transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
         .button:hover {
             background-color: #6a0dad;
@@ -86,33 +92,37 @@
         .social-icons i {
             font-size: 30px;
             color: white;
-            margin: 0 10px;
+            margin: 0 15px;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: transform 0.2s, color 0.3s;
         }
         .social-icons i:hover {
-            transform: scale(1.1);
+            transform: scale(1.2);
+            color: #6a0dad;
         }
         .game {
             margin-top: 20px;
             text-align: center;
         }
         .coin {
-            width: 40px;
-            height: 40px;
+            width: 60px;
+            height: 60px;
             background-color: gold;
             border-radius: 50%;
             display: inline-block;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
         .coin:hover {
             transform: scale(1.1);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.7);
         }
         footer {
             margin-top: 20px;
             text-align: center;
             font-size: 12px;
+            color: #ddd;
         }
         .info-section {
             margin-top: 20px;
@@ -120,6 +130,7 @@
             background-color: rgba(255, 255, 255, 0.1);
             padding: 15px;
             border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
         .contact-form {
             margin-top: 20px;
@@ -129,12 +140,18 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
         .contact-form input, .contact-form textarea {
             padding: 10px;
             border-radius: 5px;
             border: none;
             resize: none;
+            transition: box-shadow 0.3s;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            box-shadow: 0 0 5px #6a0dad;
+            outline: none;
         }
         .contact-form button {
             background-color: #4b0082;
@@ -143,7 +160,9 @@
             padding: 10px;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
             transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
         .contact-form button:hover {
             background-color: #6a0dad;
@@ -174,30 +193,27 @@
             <a href="https://discord.gg/anxCrRfxPS" target="_blank">
                 <i class="fab fa-discord"></i>
             </a>
-            <a href="https://github.com/Mutu-s" target="_blank">
-                <i class="fab fa-github"></i>
+            <a href="https://twitter.com/0xhub" target="_blank">
+                <i class="fab fa-twitter"></i>
             </a>
-            <a href="https://twitter.com/mutu0x" target="_blank">
-                <i class="fab fa-x"></i>
-            </a>
-            <a href="mailto:Contact@0xhub.xyz">
-                <i class="fas fa-envelope"></i>
+            <a href="https://t.me/0xhub" target="_blank">
+                <i class="fab fa-telegram"></i>
             </a>
         </div>
         <div class="game">
-            <h3>Click the coin!</h3>
+            <h2>Play and Earn!</h2>
+            <div class="coin" id="coin"></div>
             <p>Score: <span id="score">0</span></p>
-            <div id="coin" class="coin"></div>
         </div>
         <div class="info-section">
-            <h3>About NFTs</h3>
-            <p>NFT'ler (Non-Fungible Tokens), benzersiz dijital varlıkları temsil eden kripto paralar olarak tanımlanır. Sanat, müzik, oyun ve daha birçok alanda kullanılabilirler. 0xHub projesi, bu benzersiz varlıkları mintleyerek kullanıcıların kendi dijital koleksiyonlarını oluşturmalarına olanak tanır.</p>
+            <h2>About NFTs</h2>
+            <p>NFT'ler (Non-Fungible Tokens), benzersiz dijital varlıklardır. Sanat, oyun içi öğeler veya müzik gibi çeşitli alanlarda kullanılabilirler. Projemiz, kullanıcıların NFT'lerini mintlemesine ve ticaret yapmasına olanak tanır.</p>
         </div>
         <div class="contact-form">
-            <h3>Contact Us</h3>
+            <h2>Contact Us</h2>
             <input type="text" placeholder="Your Name" required>
             <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Message" rows="4" required></textarea>
+            <textarea rows="4" placeholder="Your Message" required></textarea>
             <button type="submit">Send Message</button>
         </div>
         <footer>
