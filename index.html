@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>0xHub NFT Minting</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,6 +14,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            transition: background-color 0.3s, color 0.3s;
         }
         .container {
             background-color: rgba(255, 255, 255, 0.1);
@@ -71,20 +71,9 @@
         .button:hover {
             background-color: #6a0dad;
         }
-        .social-icons {
-            display: flex;
-            justify-content: center;
+        .theme-toggle {
+            text-align: center;
             margin-top: 20px;
-        }
-        .social-icons i {
-            font-size: 30px;
-            color: white;
-            margin: 0 10px;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        .social-icons i:hover {
-            transform: scale(1.1);
         }
         .game {
             margin-top: 20px;
@@ -115,6 +104,9 @@
             <img src="https://www.upload.ee/image/17217533/0xhub.png" alt="0xHub Logo" class="logo">
             <h1>0xHub NFT Minting</h1>
         </div>
+        <div class="theme-toggle">
+            <button class="button" id="toggle-theme">Switch to Dark Mode</button>
+        </div>
         <div class="iframe-container">
             <iframe
                 src="https://embed.ipfscdn.io/ipfs/bafybeigdie2yyiazou7grjowoevmuip6akk33nqb55vrpezqdwfssrxyfy/erc1155.html?contract=0x598A64235F7BB8482baF829ffA56fAE355fb9A17&chain=%7B%22name%22%3A%220xHub%22%2C%22chain%22%3A%22%22%2C%22rpc%22%3A%5B%22https%3A%2F%2F0xhub-dym-evm.crabdance.com%22%5D%2C%22nativeCurrency%22%3A%7B%22symbol%22%3A%22MTU%22%2C%22name%22%3A%22MTU%22%2C%22decimals%22%3A18%7D%2C%22shortName%22%3A%22oxhubb%22%2C%22chainId%22%3A1143%2C%22testnet%22%3Afalse%2C%22slug%22%3A%22oxhubb%22%2C%22icon%22%3A%7B%22url%22%3A%22%22%2C%22width%22%3A50%2C%22height%22%3A50%2C%22format%22%3A%22%22%7D%7D&clientId=c907fb0bfa29eb679577319491da1720&tokenId=0&theme=dark&primaryColor=purple"
@@ -127,20 +119,6 @@
         <div class="buttons">
             <button class="button" onclick="window.open('https://0xhub-facuet.vercel.app/', '_blank')">Get 0xHub Faucet</button>
             <button class="button" onclick="window.open('https://playground.dymension.xyz/rollapps/oxhub_1143-1/dashboard', '_blank')">View 0xHub Rollapp</button>
-        </div>
-        <div class="social-icons">
-            <a href="https://discord.gg/anxCrRfxPS" target="_blank">
-                <i class="fab fa-discord"></i>
-            </a>
-            <a href="https://github.com/Mutu-s" target="_blank">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="https://twitter.com/mutu0x" target="_blank">
-                <i class="fab fa-x"></i>
-            </a>
-            <a href="mailto:Contact@0xhub.xyz">
-                <i class="fas fa-envelope"></i>
-            </a>
         </div>
         <div class="game">
             <h3>Click the coin!</h3>
@@ -173,6 +151,17 @@
 
         moveCoin();
         setInterval(moveCoin, 2000);
+
+        // Theme toggle functionality
+        const toggleButton = document.getElementById('toggle-theme');
+        let darkMode = false;
+
+        toggleButton.addEventListener('click', () => {
+            darkMode = !darkMode;
+            document.body.style.backgroundColor = darkMode ? '#121212' : 'linear-gradient(to right, #8a2be2, #4b0082)';
+            document.body.style.color = darkMode ? '#ffffff' : '#000000';
+            toggleButton.textContent = darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+        });
     </script>
 </body>
 </html>
