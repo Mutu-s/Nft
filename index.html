@@ -1,89 +1,148 @@
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
-
-export default function NFTMintingPage() {
-  const [timeLeft, setTimeLeft] = useState({ days: 83, hours: 12, minutes: 23, seconds: 1 })
-  const [progress, setProgress] = useState(64)
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(prevTime => {
-        if (prevTime.seconds > 0) {
-          return { ...prevTime, seconds: prevTime.seconds - 1 }
-        } else if (prevTime.minutes > 0) {
-          return { ...prevTime, minutes: prevTime.minutes - 1, seconds: 59 }
-        } else if (prevTime.hours > 0) {
-          return { ...prevTime, hours: prevTime.hours - 1, minutes: 59, seconds: 59 }
-        } else if (prevTime.days > 0) {
-          return { ...prevTime, days: prevTime.days - 1, hours: 23, minutes: 59, seconds: 59 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0xHub NFT Minting</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(to right, #8a2be2, #4b0082);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        return prevTime
-      })
-    }, 1000)
-
-    return () => clearInterval(timer)
-  }, [])
-
-  return (
-    <div className="min-h-screen bg-gradient-to-r from-purple-500 to-indigo-600 flex flex-col items-center justify-center p-4">
-      <Card className="w-full max-w-4xl bg-white/10 backdrop-blur-md text-white">
-        <CardHeader>
-          <CardTitle className="text-3xl font-bold text-center">0xHub NFT Minting</CardTitle>
-          <CardDescription className="text-center text-gray-200">
-            Mint your unique NFT on the 0xHub network
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="w-full aspect-video rounded-lg overflow-hidden shadow-xl bg-gray-800">
-            <div className="flex flex-col items-center justify-center h-full">
-              <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot_3-QuxJ6SigRq4tzlMYeZZye9useNqeNc.png" alt="mutu logo" className="w-32 h-32 mb-4" />
-              <h2 className="text-4xl font-bold mb-4">mutu</h2>
-              <Button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
-                Mint NFT
-              </Button>
-            </div>
-          </div>
-          
-          <div className="space-y-2">
-            <div className="flex justify-between">
-              <span>Minting Progress</span>
-              <span>{progress}%</span>
-            </div>
-            <Progress value={progress} className="w-full" />
-          </div>
-          
-          <div className="flex justify-center space-x-4">
-            <Button
-              variant="outline"
-              className="bg-purple-600 hover:bg-purple-700 text-white"
-              onClick={() => window.open('https://0xhub-facuet.vercel.app/', '_blank')}
-            >
-              Get 0xHub Faucet
-            </Button>
-            <Button
-              variant="outline"
-              className="bg-indigo-600 hover:bg-indigo-700 text-white"
-              onClick={() => window.open('https://playground.dymension.xyz/rollapps/oxhub_1143-1/dashboard', '_blank')}
-            >
-              View 0xHub Rollapp
-            </Button>
-          </div>
-          
-          <div className="text-center">
-            <h3 className="text-xl font-semibold mb-2">Minting Ends In:</h3>
-            <div className="flex justify-center space-x-4">
-              {Object.entries(timeLeft).map(([unit, value]) => (
-                <div key={unit} className="text-center">
-                  <div className="text-2xl font-bold">{value}</div>
-                  <div className="text-xs uppercase">{unit}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+        .container {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            color: white;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+        }
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .button {
+            background-color: #4b0082;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #6a0dad;
+        }
+        .game {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .coin {
+            width: 40px;
+            height: 40px;
+            background-color: gold;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .coin:hover {
+            transform: scale(1.1);
+        }
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://www.upload.ee/image/17217533/0xhub.png" alt="0xHub Logo" class="logo">
+            <h1>0xHub NFT Minting</h1>
+        </div>
+        <div class="iframe-container">
+            <iframe
+    src="https://embed.ipfscdn.io/ipfs/bafybeigdie2yyiazou7grjowoevmuip6akk33nqb55vrpezqdwfssrxyfy/erc1155.html?contract=0x598A64235F7BB8482baF829ffA56fAE355fb9A17&chain=%7B%22name%22%3A%220xHub%22%2C%22chain%22%3A%22%22%2C%22rpc%22%3A%5B%22https%3A%2F%2F0xhub-dym-evm.crabdance.com%22%5D%2C%22nativeCurrency%22%3A%7B%22symbol%22%3A%22MTU%22%2C%22name%22%3A%22MTU%22%2C%22decimals%22%3A18%7D%2C%22shortName%22%3A%22oxhubb%22%2C%22chainId%22%3A1143%2C%22testnet%22%3Afalse%2C%22slug%22%3A%22oxhubb%22%2C%22icon%22%3A%7B%22url%22%3A%22%22%2C%22width%22%3A50%2C%22height%22%3A50%2C%22format%22%3A%22%22%7D%7D&clientId=c907fb0bfa29eb679577319491da1720&tokenId=0&theme=dark&primaryColor=purple"
+    width="100%"
+    height="750px"
+    style="max-width:100%;"
+    frameborder="0"
+></iframe>
+        </div>
+        <div class="buttons">
+            <button class="button" onclick="window.open('https://0xhub-facuet.vercel.app/', '_blank')">Get 0xHub Faucet</button>
+            <button class="button" onclick="window.open('https://playground.dymension.xyz/rollapps/oxhub_1143-1/dashboard', '_blank')">View 0xHub Rollapp</button>
+        </div>
+        <div class="game">
+            <h3>Click the coin!</h3>
+            <p>Score: <span id="score">0</span></p>
+            <div id="coin" class="coin"></div>
+        </div>
+        <footer>
+            Powered by 0xHub Network | Explore the future of NFTs
+        </footer>
     </div>
-  )
-}
+
+    <script>
+        let score = 0;
+        const coin = document.getElementById('coin');
+        const scoreElement = document.getElementById('score');
+
+        function moveCoin() {
+            const x = Math.random() * (window.innerWidth - 50);
+            const y = Math.random() * (window.innerHeight - 50);
+            coin.style.position = 'absolute';
+            coin.style.left = `${x}px`;
+            coin.style.top = `${y}px`;
+        }
+
+        coin.addEventListener('click', () => {
+            score++;
+            scoreElement.textContent = score;
+            moveCoin();
+        });
+
+        moveCoin();
+        setInterval(moveCoin, 2000);
+    </script>
+</body>
+</html>
