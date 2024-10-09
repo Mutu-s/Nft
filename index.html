@@ -1,174 +1,111 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>0xHub</title>
-    <style>
-        /* Genel Sayfa Stili */
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: 'Fraunces', sans-serif;
-            background: linear-gradient(135deg, #f2709c, #ff9472);
-        }
+'use client'
 
-        /* Üstteki Düğmeler ve Başlık */
-        .button-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
-        }
+import { useState, useEffect } from 'react'
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import Image from 'next/image'
 
-        .heading {
-            font-size: 40px;
-            font-weight: bold;
-            color: #001f3f;
-            margin-right: 10px;
-        }
+const translations = {
+  en: {
+    title: "0xHub NFT Minting",
+    description: "Mint your unique NFT on the 0xHub network",
+    faucetButton: "Get 0xHub Faucet",
+    rollappButton: "View 0xHub Rollapp",
+    footer: "Powered by 0xHub Network | Explore the future of NFTs",
+    game: "Click the coin!",
+  },
+  tr: {
+    title: "0xHub NFT Basımı",
+    description: "0xHub ağında benzersiz NFT'nizi basın",
+    faucetButton: "0xHub Faucet Al",
+    rollappButton: "0xHub Rollapp Görüntüle",
+    footer: "0xHub Ağı tarafından desteklenmektedir | NFT'lerin geleceğini keşfedin",
+    game: "Madeni paraya tıkla!",
+  }
+}
 
-        button {
-            background: none;
-            border: none;
-            padding: 0;
-            font-family: 'Fraunces', sans-serif;
-            font-size: 24px;
-            font-weight: bold;
-            cursor: pointer;
-            color: #001f3f;
-        }
+export default function Component() {
+  const [lang, setLang] = useState('en')
+  const t = translations[lang]
+  const [coinPosition, setCoinPosition] = useState({ x: 50, y: 50 })
+  const [score, setScore] = useState(0)
 
-        button:hover {
-            color: #ff6347;
-            text-decoration: underline;
-        }
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCoinPosition({
+        x: Math.random() * 80 + 10,
+        y: Math.random() * 80 + 10
+      })
+    }, 2000)
+    return () => clearInterval(interval)
+  }, [])
 
-        .separator {
-            margin: 0 10px;
-            color: #001f3f;
-            font-size: 24px;
-        }
+  const handleCoinClick = () => {
+    setScore(score + 1)
+  }
 
-        /* Faucet Kutusu */
-        .faucet-container {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            padding: 30px;
-            width: 300px;
-            text-align: center;
-            color: #333;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            margin-top: 20px;
-        }
-
-        .faucet-container h1 {
-            font-size: 24px;
-            font-weight: bold;
-            margin: 10px 0;
-            color: #000;
-        }
-
-        .faucet-container p {
-            font-size: 14px;
-            color: #555;
-            margin-bottom: 20px;
-        }
-
-        .faucet-container input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 14px;
-        }
-
-        .faucet-container button {
-            width: 100%;
-            padding: 10px;
-            background-color: #8e44ad;
-            border: none;
-            color: #fff;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        .faucet-container button:hover {
-            background-color: #732d91;
-        }
-
-        .top-links {
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        .top-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
-
-        .top-links a:hover {
-            color: #000;
-        }
-
-        /* Iframe */
-        .iframe-container {
-            margin-top: 20px;
-            width: 100%;
-            max-width: 100%;
-            text-align: center;
-        }
-
-        iframe {
-            width: 100%;
-            max-width: 800px;
-            height: 750px;
-            border: none;
-        }
-    </style>
-</head>
-<body>
-    <!-- Düğmeler ve Başlık -->
-    <div class="button-container">
-        <div class="heading">0xHub</div>
-        <button onclick="window.location.href='https://playground.dymension.xyz/rollapps/oxhub_1143-1/dashboard'">Rollapp</button>
-        <span class="separator">⟡</span>
-        <button onclick="window.location.href='https://0xhub-facuet.vercel.app/'">Faucet</button>
+  return (
+    <div className="min-h-screen bg-gradient-to-r from-purple-500 to-indigo-600 flex flex-col items-center justify-center p-4">
+      <Card className="w-full max-w-4xl bg-white/10 backdrop-blur-md text-white">
+        <CardHeader className="flex flex-row items-center justify-between">
+          <Image src="https://www.upload.ee/image/17217533/0xhub.png" alt="0xHub Logo" width={50} height={50} />
+          <CardTitle className="text-3xl font-bold text-center">{t.title}</CardTitle>
+          <Select onValueChange={setLang} defaultValue={lang}>
+            <SelectTrigger className="w-[100px]">
+              <SelectValue placeholder="Language" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="en">English</SelectItem>
+              <SelectItem value="tr">Türkçe</SelectItem>
+            </SelectContent>
+          </Select>
+        </CardHeader>
+        <CardDescription className="text-center text-gray-200">
+          {t.description}
+        </CardDescription>
+        <CardContent className="space-y-6">
+          <div className="w-full aspect-video rounded-lg overflow-hidden shadow-xl">
+            <iframe
+              src="https://embed.ipfscdn.io/ipfs/bafybeigdie2yyiazou7grjowoeoevmuip6akk33nqb55vrpezqdwfssrxyfy/erc1155.html?contract=0x598A64235F7BB8482baF829ffA56fAE355fb9A17&chain=%7B%22name%22%3A%220xHub%22%2C%22chain%22%3A%22%22%2C%22rpc%22%3A%5B%22https%3A%2F%2F0xhub-dym-evm.crabdance.com%22%5D%2C%22nativeCurrency%22%3A%7B%22symbol%22%3A%22MTU%22%2C%22name%22%3A%22MTU%22%2C%22decimals%22%3A18%7D%2C%22shortName%22%3A%22oxhubb%22%2C%22chainId%22%3A1143%2C%22testnet%22%3Afalse%2C%22slug%22%3A%22oxhubb%22%2C%22icon%22%3A%7B%22url%22%3A%22%22%2C%22width%22%3A50%2C%22height%22%3A50%2C%22format%22%3A%22%22%7D%7D&clientId=c907fb0bfa29eb679577319491da1720&tokenId=0&theme=dark&primaryColor=purple"
+              width="100%"
+              height="100%"
+              style={{ border: 'none' }}
+              allowFullScreen
+            />
+          </div>
+          <div className="flex justify-center space-x-4">
+            <Button
+              variant="outline"
+              className="bg-purple-600 hover:bg-purple-700 text-white"
+              onClick={() => window.open('https://0xhub-facuet.vercel.app/', '_blank')}
+            >
+              {t.faucetButton}
+            </Button>
+            <Button
+              variant="outline"
+              className="bg-indigo-600 hover:bg-indigo-700 text-white"
+              onClick={() => window.open('https://playground.dymension.xyz/rollapps/oxhub_1143-1/dashboard', '_blank')}
+            >
+              {t.rollappButton}
+            </Button>
+          </div>
+          <div className="text-center">
+            <h3 className="text-xl font-semibold mb-2">{t.game}</h3>
+            <p className="text-lg">Score: {score}</p>
+            <div className="relative w-full h-40 bg-gray-800 rounded-lg mt-2">
+              <div
+                className="absolute w-10 h-10 bg-yellow-400 rounded-full cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-110"
+                style={{ left: `${coinPosition.x}%`, top: `${coinPosition.y}%` }}
+                onClick={handleCoinClick}
+              />
+            </div>
+          </div>
+        </CardContent>
+        <CardFooter className="text-center text-sm text-gray-300">
+          {t.footer}
+        </CardFooter>
+      </Card>
     </div>
-
-    <!-- Faucet Formu -->
-    <div class="faucet-container">
-        <div class="top-links">
-            <a href="#">🌐 EN</a>
-            <a href="#">🔗 Rollapp</a>
-        </div>
-        <h1>OxHub Faucet</h1>
-        <p>Test ağı için ücretsiz MTU tokeni alın</p>
-        <input type="text" placeholder="Cüzdan Adresi" />
-        <button>MTU Token Talep Et</button>
-    </div>
-
-    <!-- Iframe -->
-    <div class="iframe-container">
-        <iframe
-            src="https://embed.ipfscdn.io/ipfs/bafybeigdie2yyiazou7grjowoevmuip6akk33nqb55vrpezqdwfssrxyfy/erc1155.html?contract=0x598A64235F7BB8482baF829ffA56fAE355fb9A17&chain=%7B%22name%22%3A%220xHub%22%2C%22chain%22%3A%22%22%2C%22rpc%22%3A%5B%22https%3A%2F%2F0xhub-dym-evm.crabdance.com%22%5D%2C%22nativeCurrency%22%3A%7B%22symbol%22%3A%22MTU%22%2C%22name%22%3A%22MTU%22%2C%22decimals%22%3A18%7D%2C%22shortName%22%3A%22oxhubb%22%2C%22chainId%22%3A1143%2C%22testnet%22%3Afalse%2C%22slug%22%3A%22oxhubb%22%2C%22icon%22%3A%7B%22url%22%3A%22%22%2C%22width%22%3A50%2C%22height%22%3A50%2C%22format%22%3A%22%22%7D%7D&clientId=c907fb0bfa29eb679577319491da1720&tokenId=0&theme=dark&primaryColor=purple"
-            width="100%"
-            height="750px"
-            style="max-width:100%;"
-            frameborder="0"
-        ></iframe>
-    </div>
-</body>
-</html>
+  )
+}
