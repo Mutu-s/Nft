@@ -181,6 +181,9 @@
 
         .contact-links {
             margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .contact-links a {
@@ -188,10 +191,16 @@
             text-decoration: none;
             margin: 0 10px;
             transition: color 0.3s;
+            display: flex;
+            align-items: center;
         }
 
         .contact-links a:hover {
             color: white;
+        }
+
+        .contact-links i {
+            margin-right: 5px; /* İkon ve metin arasındaki boşluk */
         }
     </style>
 </head>
@@ -227,8 +236,8 @@
             </a>
         </div>
         <div class="game">
-            <h2>Play and Earn!</h2>
-            <div class="coin" id="coin"></div>
+            <h2>Click the Coin!</h2>
+            <div id="coin" class="coin"></div>
             <p>Score: <span id="score">0</span></p>
         </div>
         <div class="info-section">
@@ -238,9 +247,9 @@
         <div class="contact-section">
             <h2>Contact Us</h2>
             <div class="contact-links">
-                <a href="mailto:contact@0xhub.xyz">Email Us</a>
+                <a href="mailto:contact@0xhub.xyz"><i class="fas fa-envelope"></i>Email Us</a>
                 <span>|</span>
-                <a href="https://github.com/0xHub" target="_blank">GitHub</a>
+                <a href="https://github.com/0xHub" target="_blank"><i class="fab fa-github"></i>GitHub</a>
             </div>
         </div>
         <footer>
